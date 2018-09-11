@@ -56,12 +56,12 @@ have successful compiled all sub-modules of this project.
 First, convert the caffemodel file into a series of text files using caffemodel converter. You may
 want to input:
 
-./caffemodel_converter \--input [caffemodel_file] \--output [model_files_path]
+### ./caffemodel_converter \--input [caffemodel_file] \--output [model_files_path]
 
 Second, convert the jpeg file into the image file in text format using caffemodel converter. You
 may want to input:
 
-./image_converter \--input [jpeg_file] \--output [converted_image] \--mean [mean_values]
+### ./image_converter \--input [jpeg_file] \--output [converted_image] \--mean [mean_values]
 
 The converter would subscribe mean values. If your caffemodel is trained using the ilsvrc_2012 data
 set, then this option can be omitted, for subscribe mean values of this data set has been stored in
@@ -71,7 +71,7 @@ channels separates by ",". For example, if you want to subscribe B by 111, G by 
 
 Third, run the caffe_inference. You may want to input:
 
-./caffe_inferencer \--prototxt [prototxt_file] \--model_dir [model_path] \--image [image_file] \--output [output_path]
+### ./caffe_inferencer \--prototxt [prototxt_file] \--model_dir [model_path] \--image [image_file] \--output [output_path]
 
 You may also add -m option to output the intermediate results of the inference calculation.
 
