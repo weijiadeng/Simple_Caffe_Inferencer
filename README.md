@@ -63,11 +63,11 @@ may want to input:
 
 ### ./image_converter \--input [jpeg_file] \--output [converted_image] \--mean [mean_values]
 
-The converter would subscribe mean values. If your caffemodel is trained using the ilsvrc_2012 data
-set, then this option can be omitted, for subscribe mean values of this data set has been stored in
- the program. Otherwise, you need input these values to get correct result. Mean value for different
-channels separates by ",". For example, if you want to subscribe B by 111, G by 222, R by 11, you may
- want to add the option \--mean 111,222,11
+The converter would subtract mean values. If your caffemodel is trained using the ilsvrc_2012 data
+set, then this option can be omitted, for the mean values of this data set has been stored in the 
+program. Otherwise, you need input these values to get correct result. Mean value for different 
+channels separates by ",". For example, if you want to subtract B by 111, G by 222, R by 11, you may
+want to add the option \--mean 111,222,11
 
 Third, run the caffe_inference. You may want to input:
 
