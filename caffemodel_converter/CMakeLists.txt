@@ -14,4 +14,4 @@ set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb -Wno-unused-but-set
 set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall -Wno-unused-but-set-variable")
 
 
-add_executable(model_converter main.cpp external/caffe.pb.cpp external/caffe.pb.h main.h)
+add_executable(model_converter main.cpp external/caffe.pb.cpp external/caffe.pb.h main.h external/half.h)
