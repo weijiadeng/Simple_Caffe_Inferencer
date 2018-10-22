@@ -31,7 +31,7 @@ inline void bn_helper(Tensor * tensor_img, Tensor * var, Tensor * mean, std::vec
 inline Tensor * bn(Tensor * tensor_img, Tensor * variance, Tensor * mean, TYPENAME scale_factor, bool is_copy) {
     Tensor * target = handle_copy(tensor_img, is_copy);
     //Set the multiplication factor
-    Multi::set( scale_factor == 0 ? 1 : 1 / scale_factor);
+    Multi::set( TYPENAME(scale_factor == 0 ? 1 : 1 / scale_factor));
     //All variances multiply by scale factor
     tensor_map_all_singleton(variance, Multi::call);
     //All means multiply by scale factor

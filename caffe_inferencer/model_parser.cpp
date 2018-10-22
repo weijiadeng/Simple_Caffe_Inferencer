@@ -1,9 +1,3 @@
-
-//
-// Created by dwj on 8/31/18.
-//
-
-
 #include "model_parser.h"
 #include "tools.h"
 #include "main.h"
@@ -152,12 +146,10 @@ bool read_tensor(string & str, istream & ifs, vector<Tensor *> & data_list)
        if (str.empty())
            continue;
        trim(str);
-
        if (count_slices >= multi[tensor->shape.size() - 1])
            //Already get enough slices.
            break;
        vector<TYPENAME> data = string_to_array<TYPENAME>(str);
-
        //Get current position of the output file
        for (int i = 1; i < tensor->shape.size(); i++) {
            current_pos[i] = count_slices / multi[i - 1];
@@ -167,7 +159,6 @@ bool read_tensor(string & str, istream & ifs, vector<Tensor *> & data_list)
        {
            current_pos[0] = i;
            *(tensor_at(tensor, current_pos)) = data[i];
-
        }
        count_slices++;
        getline(ifs, str);
@@ -175,5 +166,3 @@ bool read_tensor(string & str, istream & ifs, vector<Tensor *> & data_list)
 
     return true;
 }
-
-

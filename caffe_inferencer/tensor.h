@@ -203,7 +203,7 @@ inline Tensor * copy(Tensor * origin) {
 inline TYPENAME tensor_read(Tensor * data, std::vector<int> const & position) {
     for (uint i = 0; i < position.size(); i++)
         if (position[i] < 0 || position[i] >= data->shape[i])
-            return 0;
+            return TYPENAME(0);
     for (uint i = data->shape.size() - 1; i > 0; i--) {
         data = &(data->sub_array[position[i]]);
     }

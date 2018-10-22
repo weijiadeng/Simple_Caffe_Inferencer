@@ -39,4 +39,3 @@ std::string num_to_string(int num);
 
 
 #endif //MODEL_CONVERTER_MAIN_H
-

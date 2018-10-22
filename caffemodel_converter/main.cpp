@@ -12,7 +12,9 @@
 #include "external/half.h"
 #include <regex>
 #include <algorithm>
-
+#include <math.h>
+#include <cfloat>
+#include <limits>
 
 
 using std::string;
@@ -23,6 +25,30 @@ using std::endl;
 using std::cout;
 
 const int SUPPOSED_DIM = 4;
+
+template <typename T>
+T verify_inf(T num){
+    if(isinf(num))
+        if(num>0)
+            num = std::numeric_limits<T>::max();
+        else
+            num = std::numeric_limits<T>::lowest();
+    return num;            
+}
+
+template <>
+half_float::half verify_inf<half_float::half> (half_float::half num){
+    if(half_float::isinf(num))
+        if(num>0)
+            num = std::numeric_limits<half_float::half>::max();
+        else
+            num = std::numeric_limits<half_float::half>::lowest();
+    return num;
+
+
+}
+
+
 
 //Test whether there exists such folder
 int is_folder_exist(const string &path)
@@ -91,7 +117,7 @@ bool get_parameters_v2(const string & out_path, caffe::NetParameter const & netp
             auto width = netparam.layer(i).blobs(j).shape().dim(size-1);
             auto width_count= static_cast<int>(1 % width);
             for(auto & x:netparam.layer(i).blobs(j).data()) {
-                ofs<<T(x);
+                ofs<<verify_inf<T>(T(x));
                 if(width_count)
                     ofs<<" ";
                 else
@@ -112,7 +138,6 @@ bool get_parameters_v2(const string & out_path, caffe::NetParameter const & netp
 template <typename T>
 bool get_parameters_v1(const string & out_path, caffe::NetParameter const & netparam ){
     for (size_t i = 0; i < netparam.layers_size(); i++) {
-        int k =netparam.layers().size();
         if(netparam.layers(i).blobs().empty())
             continue;
         string filename;
@@ -127,7 +152,7 @@ bool get_parameters_v1(const string & out_path, caffe::NetParameter const & netp
             auto width = netparam.layers(i).blobs(j).width();
             auto width_count= static_cast<int>(1 % width);
             for(auto & x:netparam.layers(i).blobs(j).data()) {
-                ofs<<T(x);
+                ofs<<verify_inf<T>(T(x));
                 if(width_count)
                     ofs<<" ";
                 else
@@ -155,7 +180,7 @@ bool get_parameters_v0(const string & out_path, caffe::NetParameter const & netp
 template <typename T>
 bool get_parameters_form_caffemodel(string const &model_path, string const &out_path) {
     ifstream ifs(model_path, ifstream::in | ifstream::binary);
-    if ((&ifs == nullptr) ||(!ifs.is_open())) {
+    if (!ifs.is_open()) {
         return false;
     }
     caffe::NetParameter netparam;
@@ -321,4 +346,3 @@ int main(int argc,char *argv[]) {
     return 0;
 
 }
-

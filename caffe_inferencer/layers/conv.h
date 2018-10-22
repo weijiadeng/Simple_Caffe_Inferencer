@@ -62,9 +62,8 @@ inline void infer_conv_shape(Tensor * tensor_img, std::vector<int>& result_dim, 
 {
     for (uint i = 0; i < tensor_img->shape.size(); i++)
         result_dim[i] = tensor_img->shape[i];
-
-    result_dim[0] = int_ceil ((tensor_img->shape[0] - x_core_dim + pad + pad) , stride)+1;
-    result_dim[1] = int_ceil ((tensor_img->shape[1] - y_core_dim + pad + pad) , stride)+1;
+    result_dim[0] = (tensor_img->shape[0] + 2 * pad - (x_core_dim + 1) + 1) / stride + 1;
+    result_dim[1] = (tensor_img->shape[1] + 2 * pad - (y_core_dim + 1) + 1) / stride + 1;
     result_dim[2] = z_core_dim;
     result_dim[3] = tensor_img->shape[3];
 }

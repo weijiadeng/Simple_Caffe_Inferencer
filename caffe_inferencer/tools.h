@@ -32,6 +32,30 @@ public:
 ///custom exp function
 TYPENAME exp_custom(TYPENAME x);
 
+template <typename T>
+T exp_default(T x){
+    return exp(x);
+}
+
+
+template <>
+inline half_float::half exp_default<half_float::half>(half_float::half x){
+    return half_float::exp(x);
+}
+
+
+
+template <typename T>
+T sqrt_default(T x){
+    return sqrt(x);
+}
+
+
+template <>
+inline half_float::half sqrt_default(half_float::half x){
+    return half_float::sqrt(x);
+}
+
 ///used to count the number of points in a given tensor
 TYPENAME singleton_count(TYPENAME l, TYPENAME r);
 
@@ -106,7 +130,7 @@ inline TYPENAME assign_from_val(TYPENAME val) {
 
 inline TYPENAME singleton_count(TYPENAME l, TYPENAME r)
 {
-    return l + 1.0;
+    return l + TYPENAME(1);
 }
 
 inline void add_array(const int * left, const int * right, int * result, int array_length) {
