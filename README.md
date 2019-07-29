@@ -28,7 +28,7 @@ image file to the size that exactly required by the prototxt file.
 
 In order to compile the main part of this project, cmake, gcc and boost is needed.
 
-In order to compile the caffemodel converter, Google Protobuf 3.5.1 is needed.
+In order to compile the caffemodel converter, Google Protobuf 3.8.0 is needed.
 
 In order to compile the image converter, libjpeg is needed.
 
