@@ -35,7 +35,7 @@ In order to compile the image converter, libjpeg is needed.
 For example, to run and to compile all parts of this project in a freshly installed ubuntu 18.04,
 you may want to execute the following commends:
 
-### sudo apt-get install build-essential, cmake, libboost-all-dev, libprotobuf-dev
+### sudo apt-get install build-essential, cmake, libboost-all-dev, libprotobuf-dev, libomp-dev
 
 
 ## How to build

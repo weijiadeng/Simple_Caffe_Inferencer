@@ -12,7 +12,6 @@
 #include "main.h"
 #include <sys/stat.h>
 #include "dirent.h"
-
 using std::string;
 using std::vector;
 
@@ -32,7 +31,6 @@ int is_folder_exist(const string &path)
 
 
 int main(int argc,char *argv[]) {
-
 
     TestAppArgs testAppArgs = TestAppArgs();
     int ii = 1;
